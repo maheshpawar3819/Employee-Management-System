@@ -3,8 +3,9 @@ const express=require("express");
 const app=express();
 const cors=require("cors");
 const authRouter=require("./routes/auth-route")
+const connectDatabase=require("./db/db");
 
-
+connectDatabase();
 app.use(cors());
 app.use(express.json());
 
