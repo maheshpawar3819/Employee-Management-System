@@ -22,8 +22,7 @@ const Login = () => {
         alert(response?.data?.message);
       }
     } catch (error) {
-      // console.log("this is an error");
-    
+      setError(error.response?.data?.error || "An unexpected error occurred");
     }
   };
 
