@@ -46,6 +46,7 @@ const Login = () => {
               className="w-full px-3 py-2 border"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div>
@@ -59,6 +60,7 @@ const Login = () => {
               className="w-full px-3 py-2 border"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className="mb-4 flex items-center justify-between">
