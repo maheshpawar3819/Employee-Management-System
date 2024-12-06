@@ -1,16 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 //create context
-const userContext = useContext();
+const userContext = createContext();
 
-const authContext = ({ children }) => {
+const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
 
   //login function
-  const login = () => {};
+  const login = (user) => {
+    setUser(user);
+  };
 
   //logout function
-  const logout = () => {};
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+  };
 
   return (
     <userContext.Provider value={{ user, login, logout }}>
@@ -20,4 +25,4 @@ const authContext = ({ children }) => {
 };
 
 export const useAuth = () => useContext(userContext);
-export default authContext;
+export default AuthContext;

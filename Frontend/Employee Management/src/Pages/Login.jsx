@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../Context/authContext";
+import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -8,9 +8,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //access login form global store
-  const {login}=useAuth();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,9 +27,11 @@ const Login = () => {
       if (response.data.success) {
         alert(response?.data?.message);
         login(response?.data?.user);
-        localStorage.setItem("token",response?.data?.token);
-        if(response?.data?.role === "admin"){
-          // ............pending
+        localStorage.setItem("token", response?.data?.token);
+        if (response?.data?.role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/employee-dashboard");
         }
       }
     } catch (error) {
