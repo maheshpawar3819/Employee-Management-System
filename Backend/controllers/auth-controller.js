@@ -43,4 +43,12 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { login };
+//verify the user
+const verify = async (req, res) => {
+  return res.status(200).json({
+    success: true,
+    user: req.user,
+  });
+};
+
+module.exports = { login, verify };
