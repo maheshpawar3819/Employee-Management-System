@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/authContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,12 +23,11 @@ const Login = () => {
         }
       );
 
-      console.log(response);
       if (response.data.success) {
         alert(response?.data?.message);
         login(response?.data?.user);
         localStorage.setItem("token", response?.data?.token);
-        if (response?.data?.role === "admin") {
+        if (response?.data?.user?.role === "admin") {
           navigate("/admin-dashboard");
         } else {
           navigate("/employee-dashboard");
