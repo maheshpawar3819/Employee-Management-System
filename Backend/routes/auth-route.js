@@ -5,6 +5,6 @@ const { verifyUser } = require("../middleware/auth-Middleware");
 
 //create route for login
 router.route("/login").post(login);
-router.route("/verify").post(verifyUser, verify);
+router.route("/verify").get(verifyUser, verify);
 
 module.exports = router;
