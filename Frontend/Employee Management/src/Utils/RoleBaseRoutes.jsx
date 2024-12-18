@@ -6,11 +6,11 @@ const RoleBaseRoutes = ({ children, requiredRole }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    <div>Loading..</div>;
+   return <div>Loading..</div>;
   }
 
   if (!requiredRole.includes(user.role)) {
-    <Naivgate to="/unauthorized" />;
+   return <Navigate to="/unauthorized" />;
   }
 
   return user ? children : <Navigate to={"/login"} />;

@@ -13,7 +13,7 @@ const AuthContext = ({ children }) => {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await axios.post(
+          const response = await axios.get(
             "http://localhost:8080/api/auth/verify",
             {
               headers: {
