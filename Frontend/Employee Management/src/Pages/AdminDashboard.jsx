@@ -1,12 +1,13 @@
 import React from "react";
 import { useAuth } from "../Context/authContext";
-import { useNavigate } from "react-router-dom";
+import AdminSideBar from "../Components/Dashboard/AdminSideBar";
 
 const AdminDashboard = () => {
   const { user } = useAuth();
 
   return (
     <div>
+      <AdminSideBar/>
       <p>admin dashboard {user && user.name}</p>
     </div>
   );
