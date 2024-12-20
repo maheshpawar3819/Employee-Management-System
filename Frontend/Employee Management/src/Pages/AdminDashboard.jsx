@@ -1,14 +1,14 @@
 import React from "react";
-import { useAuth } from "../Context/authContext";
 import AdminSideBar from "../Components/Dashboard/AdminSideBar";
+import Navbar from "../Components/Dashboard/Navbar";
 
 const AdminDashboard = () => {
-  const { user } = useAuth();
-
   return (
-    <div>
-      <AdminSideBar/>
-      <p>admin dashboard {user && user.name}</p>
+    <div className="flex">
+      <AdminSideBar />
+      <div className="flex-1 ml-64 h-screen bg-gray-100">
+        <Navbar />
+      </div>
     </div>
   );
 };

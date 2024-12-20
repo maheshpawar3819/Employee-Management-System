@@ -10,7 +10,7 @@ import {
 
 const AdminSideBar = () => {
   return (
-    <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-72">
+    <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64 ">
       <div className="bg-teal-600 h-12 flext items-center justify-center">
         <p className="text-2xl text-center font-pacifico pt-2">Employee Ms</p>
       </div>
