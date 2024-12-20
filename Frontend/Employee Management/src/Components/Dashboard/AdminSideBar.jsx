@@ -20,16 +20,18 @@ const AdminSideBar = () => {
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
-            } flex items-center space-x-4 ml-14 text-xl py-2.5 rounded tracking-wider`
+            } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
         >
           <FaTachometerAlt />
           <span>Dashboard</span>
-        </NavLink> 
+        </NavLink>
         <NavLink
           to="/employee-dashboard"
-          className={
-            "flex items-center space-x-4 ml-14 text-xl py-2.5 rounded tracking-wider"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
         >
           <FaUser />
@@ -37,8 +39,10 @@ const AdminSideBar = () => {
         </NavLink>
         <NavLink
           to="/employee-dashboard"
-          className={
-            "flex items-center space-x-4 ml-14 text-xl py-2.5 rounded tracking-wider"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
         >
           <FaBuilding />
@@ -46,8 +50,10 @@ const AdminSideBar = () => {
         </NavLink>
         <NavLink
           to="/employee-dashboard"
-          className={
-            "flex items-center space-x-4 ml-14 text-xl py-2.5 rounded tracking-wider"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
         >
           <FaCalendarAlt />
@@ -55,8 +61,10 @@ const AdminSideBar = () => {
         </NavLink>
         <NavLink
           to="/employee-dashboard"
-          className={
-            "flex items-center space-x-4 ml-14 text-xl py-2.5 rounded tracking-wider"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
         >
           <FaMoneyBillWave />
@@ -64,8 +72,10 @@ const AdminSideBar = () => {
         </NavLink>
         <NavLink
           to="/employee-dashboard"
-          className={
-            "flex items-center space-x-4 ml-14 text-xl py-2.5 rounded tracking-wider"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : " "
+            } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
         >
           <FaMoneyBillWave />
