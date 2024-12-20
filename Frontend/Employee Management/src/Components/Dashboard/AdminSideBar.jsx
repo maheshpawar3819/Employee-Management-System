@@ -22,6 +22,7 @@ const AdminSideBar = () => {
               isActive ? "bg-teal-500" : " "
             } flex items-center space-x-4 m-auto pl-14 text-xl py-2.5 rounded tracking-wider`
           }
+          end
         >
           <FaTachometerAlt />
           <span>Dashboard</span>
@@ -38,7 +39,7 @@ const AdminSideBar = () => {
           <span>Employee</span>
         </NavLink>
         <NavLink
-          to="/employee-dashboard"
+          to="/admin-dashboard/departments"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
