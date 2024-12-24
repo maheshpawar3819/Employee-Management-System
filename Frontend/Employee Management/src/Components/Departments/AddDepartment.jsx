@@ -20,12 +20,6 @@ const AddDepartment = () => {
     e.preventDefault();
     const { dep_name, description } = department;
 
-    //check both fields are fill
-    if (!dep_name && !description) {
-      alert("both fields are required");
-      return;
-    }
-
     try {
       const response = await axios.post(
         "http://localhost:8080/api/department/add",
@@ -68,6 +62,7 @@ const AddDepartment = () => {
               className="mt-1 w-full p-2 border border-x-gray-300 rounded-md"
               value={department.dep_name}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mt-3">
@@ -85,6 +80,7 @@ const AddDepartment = () => {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
               value={department.description}
               onChange={handleChange}
+              required
             ></textarea>
           </div>
           <button
