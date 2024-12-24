@@ -1,24 +1,24 @@
 export const colums = [
   {
     name: "S No",
-    selector: () => row.sno,
+    selector: (row) => row.sno,
   },
   {
     name: "Department Name",
-    selector: () => row.dep_name,
+    selector: (row) => row.dep_name,
   },
   {
     name: "Action",
-    selector: () => row.action,
+    selector: (row) => row.action,
   },
 ];
 
 export const DepartmentButtons = () => {
   return (
     <>
-      <div>
-        <button>Edit</button>
-        <button>Delete</button>
+      <div className="flex space-x-3">
+        <button className="p-3 py-1 bg-teal-600 text-white rounded-md">Edit</button>
+        <button className="p-3 py-1 bg-red-600 text-white rounded-md">Delete</button>
       </div>
     </>
   );

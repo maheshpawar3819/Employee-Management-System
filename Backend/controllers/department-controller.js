@@ -21,4 +21,19 @@ const addDepartment = async (req, res) => {
   }
 };
 
-module.exports = { addDepartment };
+const getDepartments = async (req, res) => {
+  try {
+    const departments = await Department.find();
+    res.status(200).json({
+      success: true,
+      departments,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: "didnt find any department server error",
+    });
+  }
+};
+
+module.exports = { addDepartment, getDepartments };
