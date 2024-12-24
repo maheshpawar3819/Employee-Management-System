@@ -18,12 +18,24 @@ const AddDepartment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { dep_name, description } = department;
+
+    //check both fields are fill
+    if (!dep_name && !description) {
+      alert("both fields are required");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8080/api/department/add",
         {
+          dep_name,
+          description,
+        },
+        {
           headers: {
-            Authentication: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
@@ -31,7 +43,7 @@ const AddDepartment = () => {
         navigate("/admin-dashboard/departments");
       }
     } catch (error) {
-      if (error.response && !error.response.data.sussess) {
+      if (error.response && !error.response.data.success) {
         alert(error.response.data.error);
       }
     }
