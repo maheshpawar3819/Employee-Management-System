@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { data, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { colums } from "../../Utils/DepartmentHelpers/DepartmentHelper";
 import axios from "axios";
 import { DepartmentButtons } from "../../Utils/DepartmentHelpers/DepartmentHelper";
+import { ThreeDots } from "react-loader-spinner";
 
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
@@ -25,7 +26,12 @@ const DepartmentList = () => {
           id: dep._id,
           sno: sno++,
           dep_name: dep.dep_name,
-          action: <DepartmentButtons />,
+          action: (
+            <DepartmentButtons
+              id={dep._id}
+              onDepartmentDelete={onDepartmentDelete}
+            />
+          ),
         }));
         setDepartments(data);
       }
@@ -38,6 +44,12 @@ const DepartmentList = () => {
     }
   };
 
+  //function for render list when delete department
+  const onDepartmentDelete = async (id) => {
+    const data = departments.filter((dep) => dep._id !== id);
+    setDepartments(data);
+  };
+
   useEffect(() => {
     fetchDepartments();
   }, []);
@@ -45,7 +57,10 @@ const DepartmentList = () => {
   return (
     <>
       {depLoading ? (
-        <h1>Loading..</h1>
+        <div className="flex justify-center items-center h-screen">
+          {" "}
+          <ThreeDots color="#00BFFF" height={100} width={100} />{" "}
+        </div>
       ) : (
         <div className="p-5">
           <div className="text-center">
