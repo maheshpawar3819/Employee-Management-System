@@ -9,6 +9,7 @@ import { ThreeDots } from "react-loader-spinner";
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [depLoading, setDepLoading] = useState(false);
+  const [filteredDepartments, setFilteredDepartments] = useState([]);
 
   const fetchDepartments = async () => {
     setDepLoading(true);
@@ -34,6 +35,7 @@ const DepartmentList = () => {
           ),
         }));
         setDepartments(data);
+        setFilteredDepartments(data);
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
@@ -50,6 +52,15 @@ const DepartmentList = () => {
       prevDepartments.filter((dep) => dep.id !== id)
     );
   };
+
+  //function to filtering the departments
+  const filterDepartments = (e) => {
+    const record = departments.filter((dep) => {
+      return dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    setFilteredDepartments(record);
+  };
+
 
   useEffect(() => {
     fetchDepartments();
@@ -72,6 +83,7 @@ const DepartmentList = () => {
               type="text"
               placeholder="Search By Dep Name"
               className="px-4 py-0.5 border"
+              onChange={filterDepartments}
             />
             <Link
               to="/admin-dashboard/add-department"
@@ -81,7 +93,7 @@ const DepartmentList = () => {
             </Link>
           </div>
           <div className="mt-5 rounded-md">
-            <DataTable columns={colums} data={departments} />
+            <DataTable columns={colums} data={filteredDepartments} pagination paginationPerPage={7}/>
           </div>
         </div>
       )}
