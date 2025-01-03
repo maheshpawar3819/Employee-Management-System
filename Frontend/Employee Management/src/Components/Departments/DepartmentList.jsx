@@ -47,10 +47,12 @@ const DepartmentList = () => {
   };
 
   //function for render list when delete department
-  const onDepartmentDelete = async (id) => {
-    setDepartments((prevDepartments) =>
-      prevDepartments.filter((dep) => dep.id !== id)
-    );
+  const onDepartmentDelete = (id) => {
+    setDepartments((prevDepartments) => {
+      const updatedDepartments = prevDepartments.filter((dep) => dep.id !== id);
+      setFilteredDepartments(updatedDepartments);
+      return updatedDepartments;
+    });
   };
 
   //function to filtering the departments
@@ -60,7 +62,6 @@ const DepartmentList = () => {
     });
     setFilteredDepartments(record);
   };
-
 
   useEffect(() => {
     fetchDepartments();
@@ -93,7 +94,12 @@ const DepartmentList = () => {
             </Link>
           </div>
           <div className="mt-5 rounded-md">
-            <DataTable columns={colums} data={filteredDepartments} pagination paginationPerPage={7}/>
+            <DataTable
+              columns={colums}
+              data={filteredDepartments}
+              pagination
+              paginationPerPage={7}
+            />
           </div>
         </div>
       )}
