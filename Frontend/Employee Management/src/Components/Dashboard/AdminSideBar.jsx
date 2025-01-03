@@ -28,7 +28,7 @@ const AdminSideBar = () => {
           <span>Dashboard</span>
         </NavLink>
         <NavLink
-          to="/employee-dashboard"
+          to="/admin-dashboard/employees"
           className={({ isActive }) =>
             `${
               isActive ? "bg-teal-500" : " "
