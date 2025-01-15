@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import {fetchDepartments} from "../../Utils/EmployeeHelpers/EmployeeHelper";
+import useGetDepartments from "../../Utils/EmployeeHelpers/useGetDepartments";
+import { useSelector } from "react-redux";
 
 const EmpAdd = () => {
   const [formData, setFormData] = useState({
@@ -17,15 +18,16 @@ const EmpAdd = () => {
     role: "",
     image: null,
   });
+  //hook call to get departments
+  useGetDepartments();
+
+  //get departments from redux store
+  const departments = useSelector((store) => store.department.departments);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  useEffect(() => {
-    fetchDepartments();
-  }, []);
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-md mt-2">
@@ -120,9 +122,9 @@ const EmpAdd = () => {
             className="mt-1 block w-full px-4 py-2 border rounded-md"
           >
             <option value="">Select Department</option>
-            <option value="HR">HR</option>
-            <option value="Finance">Finance</option>
-            <option value="Engineering">Engineering</option>
+            {/* {departments.length > 0 ?  departments.map((dep) => {
+              return <option key={dep._id}>{dep.name}</option>;
+            }): <p>loading..</p>} */}
           </select>
         </div>
         <div>
@@ -143,7 +145,7 @@ const EmpAdd = () => {
             name="password"
             value={formData.password}
             onChange={handleInputChange}
-            placeholder="Password"
+            placeholder="********"
             className="mt-1 block w-full px-4 py-2 border rounded-md"
           />
         </div>
