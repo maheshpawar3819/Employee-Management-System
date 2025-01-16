@@ -122,9 +122,14 @@ const EmpAdd = () => {
             className="mt-1 block w-full px-4 py-2 border rounded-md"
           >
             <option value="">Select Department</option>
-            {/* {departments.length > 0 ?  departments.map((dep) => {
-              return <option key={dep._id}>{dep.name}</option>;
-            }): <p>loading..</p>} */}
+            {departments &&
+              departments.map((dep) => {
+                return (
+                  <option value={dep._id} key={dep._id}>
+                    {dep.dep_name}
+                  </option>
+                );
+              })}
           </select>
         </div>
         <div>

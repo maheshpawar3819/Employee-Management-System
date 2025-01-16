@@ -12,9 +12,9 @@ const useGetDepartments = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response?.data?.success) {
-        dispatch(getDepartments(response.data));
+        dispatch(getDepartments(response?.data?.departments));
       }
     } catch (error) {
       if (error.response && !error.response.data.success) {
