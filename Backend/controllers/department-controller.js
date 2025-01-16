@@ -94,7 +94,6 @@ const editDepartment = async (req, res) => {
 const deleteDepartment = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const deleteDep = await Department.findByIdAndDelete(id);
 
     return res.status(200).json({
