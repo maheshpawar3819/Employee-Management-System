@@ -24,8 +24,7 @@ const useGetDepartments = () => {
   };
   useEffect(() => {
     getDeps();
-  },[]);
+  }, []);
 };
-
 
 export default useGetDepartments;

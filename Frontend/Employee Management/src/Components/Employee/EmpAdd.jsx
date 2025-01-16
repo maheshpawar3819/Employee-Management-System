@@ -25,9 +25,14 @@ const EmpAdd = () => {
   const departments = useSelector((store) => store.department.departments);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
+
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-md mt-2">
@@ -172,6 +177,9 @@ const EmpAdd = () => {
           <input
             type="file"
             name="image"
+            placeholder="Upload Image"
+            onChange={handleInputChange}
+            accept="image/*"
             className="mt-1 block w-full px-4 py-2 border rounded-md"
           />
         </div>
