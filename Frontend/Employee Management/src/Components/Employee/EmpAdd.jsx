@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import useGetDepartments from "../../Utils/EmployeeHelpers/useGetDepartments";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const EmpAdd = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +23,9 @@ const EmpAdd = () => {
   //hook call to get departments
   useGetDepartments();
 
+  //nevigation
+  const navigate = useNavigate();
+
   //get departments from redux store
   const departments = useSelector((store) => store.department.departments);
 
@@ -33,11 +38,39 @@ const EmpAdd = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //using formData object because the form contains file so that why
+    const formDataObj = new FormData();
+    //looping all form key's with using this method
+    Object.keys(formData).forEach((key) => {
+      formDataObj.append(key, formData[key]);
+    });
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/api/employee/add`,
+        formDataObj,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        navigate("/admin-dashboard/employees");
+      }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        alert(error.response.data.error);
+      }
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-md mt-2">
       <h2 className="text-2xl font-bold text-center mb-5">Add Employee</h2>
-      <form className="grid grid-cols-2 gap-5">
+      <form className="grid grid-cols-2 gap-5" onSubmit={handleSubmit}>
         <div>
           <label className="block text-sm font-medium">Name</label>
           <input
@@ -168,8 +201,8 @@ const EmpAdd = () => {
             className="mt-1 block w-full px-4 py-2 border rounded-md"
           >
             <option value="">Select Role</option>
-            <option value="Admin">Admin</option>
-            <option value="Employee">Employee</option>
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
           </select>
         </div>
         <div>
