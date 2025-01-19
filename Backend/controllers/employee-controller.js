@@ -16,6 +16,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+//controller for get all employees
+const getEmployees = async (req, res) => {
+  try {
+    const getEmp = await Employee.find();
+    if (!getEmp) {
+      return res.status(400).json({
+        success: false,
+        error: "There is no employee available",
+      });
+    }
+
+    //sending response
+    return res.status(200).json({
+      success: true,
+      getEmp,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: "server error in getting employee",
+    });
+  }
+};
+
 //controller for adding employee
 const addEmployee = async (req, res) => {
   try {
@@ -76,7 +100,7 @@ const addEmployee = async (req, res) => {
       message: "employee created",
     });
   } catch (error) {
-    console.log(error)
+    // console.log(error);
     return res.status(500).json({
       success: false,
       error: "server error in adding employee",
@@ -84,4 +108,4 @@ const addEmployee = async (req, res) => {
   }
 };
 
-module.exports = { addEmployee, upload };
+module.exports = { addEmployee, upload, getEmployees };
